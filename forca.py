@@ -42,7 +42,7 @@ def gerando_palavra_descoberta(palavra_secreta):
 
 
 def resultado(palavra_secreta, palavra_descoberta):
-    erros = 7
+    erros = 0
 
     while (True):
         chute = input("Digite uma letra: ")
@@ -54,11 +54,10 @@ def resultado(palavra_secreta, palavra_descoberta):
                     palavra_descoberta[index] = letra
                 index += 1
         else:
-            erros -= 1
-            if (erros != 0):
-                print("Você errou! Tem mais {} chances.".format(erros))
+            erros += 1
+            desenhar_forca(erros)
 
-        enforcado = erros <= 0
+        enforcado = erros == 7
         acertou = not "_" in palavra_descoberta
 
         if (acertou):
@@ -67,6 +66,57 @@ def resultado(palavra_secreta, palavra_descoberta):
             return False
 
         print ("\n", palavra_descoberta)
+
+
+def desenhar_forca(erros):
+    print("  _______     ")
+    print(" |/      |    ")
+
+    if(erros == 1):
+        print(" |      (_)   ")
+        print(" |            ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erros == 2):
+        print(" |      (_)   ")
+        print(" |      \     ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erros == 3):
+        print(" |      (_)   ")
+        print(" |      \|    ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erros == 4):
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |            ")
+        print(" |            ")
+
+    if(erros == 5):
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |            ")
+
+    if(erros == 6):
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |      /     ")
+
+    if (erros == 7):
+        print(" |      (_)   ")
+        print(" |      \|/   ")
+        print(" |       |    ")
+        print(" |      / \   ")
+
+    print(" |            ")
+    print("_|___         ")
+    print()
 
 
 def menssagem_vencedora():
