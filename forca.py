@@ -10,7 +10,12 @@ def jogar():
 
     venceu = resultado(palavra_secreta, palavra_descoberta)
 
-    print("Fim de jogo.")
+    if (venceu):
+        menssagem_vencedora()
+    else:
+        menssagem_perdedora(palavra_secreta)
+
+    print("\nFim de jogo.")
 
 def abertura():
     print("**********************************")
@@ -49,29 +54,55 @@ def resultado(palavra_secreta, palavra_descoberta):
                     palavra_descoberta[index] = letra
                 index += 1
         else:
-                    erros -= 1
-                    print("Você errou! Tem mais {} chances.".format(erros))
+            erros -= 1
+            if (erros != 0):
+                print("Você errou! Tem mais {} chances.".format(erros))
 
         enforcado = erros <= 0
         acertou = not "_" in palavra_descoberta
 
         if (acertou):
-            menssagem_vencedora()
             return True
         elif (enforcado):
-            menssagem_perdedora()
             return False
 
-        print (palavra_descoberta)
+        print ("\n", palavra_descoberta)
 
 
 def menssagem_vencedora():
-    print("")
+    print("Parabéns, você ganhou!")
+    print("       ___________      ")
+    print("      '._==_==_=_.'     ")
+    print("      .-\\:      /-.    ")
+    print("     | (|:.     |) |    ")
+    print("      '-|:.     |-'     ")
+    print("        \\::.    /      ")
+    print("         '::. .'        ")
+    print("           ) (          ")
+    print("         _.' '._        ")
+    print("        '-------'       ")
 
 
 
-def menssagem_perdedora():
-    print("")
+def menssagem_perdedora(palavra_secreta):
+    print("Puxa, você foi enforcado!")
+    print("A palavra era {}".format(palavra_secreta))
+    print("    _______________         ")
+    print("   /               \       ")
+    print("  /                 \      ")
+    print("//                   \/\  ")
+    print("\|   XXXX     XXXX   | /   ")
+    print(" |   XXXX     XXXX   |/     ")
+    print(" |   XXX       XXX   |      ")
+    print(" |                   |      ")
+    print(" \__      XXX      __/     ")
+    print("   |\     XXX     /|       ")
+    print("   | |           | |        ")
+    print("   | I I I I I I I |        ")
+    print("   |  I I I I I I  |        ")
+    print("   \_             _/       ")
+    print("     \_         _/         ")
+    print("       \_______/           ")
 
 
 if (__name__ == "__main__"):
