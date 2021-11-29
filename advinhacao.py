@@ -25,26 +25,30 @@ else:
     print("Difícil foi selecionado!\n")
     jogadas = 5
 
-while (jogadas != 0):
+for rodada in range(1, jogadas + 1):
+    rodada = jogadas - rodada
 
     chute = int(input("Qual o seu chute? "))
 
-    if (chute == numero_secreto):
+    acertou = chute == numero_secreto
+    maior = chute > numero_secreto
+    menor = chute < numero_secreto
+    perdeu = rodada == 0
+
+    if (acertou):
         print("Você acertou")
         print("Sua pontuação foi {}".format(pontos))
         break
-    elif (chute > numero_secreto):
+    elif (maior):
         print("Seu chute foi maior que o número secreto!")
-        jogadas -= 1
         pontos = pontos - abs(chute - numero_secreto)
-    else:
+    elif (menor):
         print("Seu chute foi menor do que o número secreto!")
-        jogadas -= 1
         pontos = pontos - abs(chute - numero_secreto)
 
-    if (jogadas != 0):
-        print("Você ainda tem {} chances\n".format(jogadas))
-    elif (jogadas == 0):
+    if (not perdeu):
+        print("Você ainda tem {} chances de {}\n".format(rodada, jogadas))
+    elif (perdeu):
         print("Você perdeu!")
         print("Sua pontuação foi {}".format(pontos))
         print("O número secreto era {}".format(numero_secreto))
