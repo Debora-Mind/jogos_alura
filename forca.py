@@ -8,32 +8,7 @@ def jogar():
     palavra_descoberta = gerando_palavra_descoberta(palavra_secreta)
     print(palavra_descoberta)
 
-    enforcado = False
-    acertou = False
-    erros = 0
-
-    while (not enforcado or not acertou):
-        chute = input("Digite uma letra")
-
-        if (chute in palavra_secreta):
-            index = 0
-            for letra in palavra_secreta:
-                if (letra == chute):
-                    palavra_descoberta[index] = letra
-                index += 1
-                if (letra != chute):
-                    erros += 1
-
-        enforcado = erros == 7
-        acertou = not "_" in palavra_descoberta
-
-        if (acertou):
-            menssagem_vencedora()
-            break
-        elif (enforcado):
-            menssagem_perdedora()
-
-        print (palavra_descoberta)
+    venceu = resultado(palavra_secreta, palavra_descoberta)
 
     print("Fim de jogo.")
 
@@ -60,10 +35,44 @@ def gerando_palavra_descoberta(palavra_secreta):
     palavra = ["_" for letras in palavra_secreta]
     return palavra
 
+
+def resultado(palavra_secreta, palavra_descoberta):
+    erros = 7
+
+    while (True):
+        chute = input("Digite uma letra: ")
+
+        if (chute in palavra_secreta):
+            index = 0
+            for letra in palavra_secreta:
+                if (letra == chute):
+                    palavra_descoberta[index] = letra
+                index += 1
+        else:
+                    erros -= 1
+                    print("Você errou! Tem mais {} chances.".format(erros))
+
+        enforcado = erros <= 0
+        acertou = not "_" in palavra_descoberta
+
+        if (acertou):
+            menssagem_vencedora()
+            return True
+        elif (enforcado):
+            menssagem_perdedora()
+            return False
+
+        print (palavra_descoberta)
+
+
 def menssagem_vencedora():
-    pass
+    print("")
+
+
 
 def menssagem_perdedora():
-    pass
+    print("")
+
+
 if (__name__ == "__main__"):
     jogar()
