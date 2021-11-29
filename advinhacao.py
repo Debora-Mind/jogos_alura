@@ -1,9 +1,11 @@
+import random
+
 print("**********************************")
 print("*Bem vindo ao jogo de advinhação!*")
 print("**********************************")
 
 chute = 0
-numero_secreto = 54
+numero_secreto = random.randrange(1,101)
 
 jogadas = 0
 dificuldade = 0
@@ -34,7 +36,7 @@ while (jogadas != 0):
         jogadas -= 1
 
     if (jogadas != 0):
-        print("Você ainda tem {} chances".format(jogadas))
+        print("Você ainda tem {} chances\n".format(jogadas))
     elif (jogadas == 0):
         print("Você perdeu!")
         print("O número secreto era {}".format(numero_secreto))
