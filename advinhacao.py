@@ -6,14 +6,11 @@ def jogar():
     abertura()
     numero_secreto = gerando_numero_secreto()
 
-    chute = 0
-    pontos = 1000
-
     jogadas = escolher_dificuldade()
 
     print("Você precisa advinhar um número de 1 à 100!")
 
-    venceu = resultado(jogadas, numero_secreto, pontos)
+    venceu = resultado(jogadas, numero_secreto)
 
     if (venceu == True):
         menssagem_vencedora()
@@ -48,12 +45,19 @@ def escolher_dificuldade():
     return jogadas
 
 
-def resultado(jogadas, numero_secreto, pontos):
+def resultado(jogadas, numero_secreto):
+
+    pontos = 1000
 
     for rodada in range(1, jogadas + 1):
         rodada = jogadas - rodada
 
         chute = int(input("Qual o seu chute? "))
+
+        if (chute <1 or chute >100):
+            print("Você deve digitar um número entre 1 e 100! (Perde 1 rodada!)")
+            print("Você ainda tem {} chances de {}\n".format(rodada, jogadas))
+            continue
 
         acertou = chute == numero_secreto
         maior = chute > numero_secreto
